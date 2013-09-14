@@ -5,7 +5,10 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import edu.ucla.ee.nesl.FirewallConfigMessages.Action;
 import edu.ucla.ee.nesl.FirewallConfigMessages.DateTime;
 import edu.ucla.ee.nesl.FirewallConfigMessages.FirewallConfig;
+import edu.ucla.ee.nesl.FirewallConfigMessages.Param;
 import edu.ucla.ee.nesl.FirewallConfigMessages.Rule;
+import edu.ucla.ee.nesl.FirewallConfigMessages.SensorValue;
+import edu.ucla.ee.nesl.FirewallConfigMessages.VectorValue;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -121,6 +124,33 @@ public class ActivityMonitor extends BroadcastReceiver {
 		configBuilder.addRule(rule.build());
     	//return configBuilder.build();
     	
+    }
+    
+    public void testConstant(String pkgName, int uid, int sensorType, String ruleName, float constant) {
+    	Rule.Builder rule = Rule.newBuilder();
+    	rule.setRuleName(ruleName);
+    	rule.setPkgName(pkgName);
+    	rule.setSensorType(sensorType);
+    	rule.setPkgUid(uid);
+    	
+    	Action.Builder action = Action.newBuilder();
+    	action.setActionType(Action.ActionType.ACTION_CONSTANT);
+    	
+    	VectorValue.Builder vv = VectorValue.newBuilder();
+    	vv.setX(constant);
+    	vv.setY(constant);
+    	vv.setZ(constant);
+    	
+    	SensorValue.Builder sv = SensorValue.newBuilder();
+    	sv.setVecVal(vv.build());
+    	sv.setDefaultVal(constant);
+    	
+    	Param.Builder param = Param.newBuilder();
+    	param.setConstantValue(sv.build());
+    	
+    	action.setParam(param.build());
+    	rule.setAction(action.build());
+    	configBuilder.addRule(rule.build()); 	
     }
     
     // hard code the rule here.
