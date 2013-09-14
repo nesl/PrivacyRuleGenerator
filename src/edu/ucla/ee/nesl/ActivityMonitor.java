@@ -43,7 +43,7 @@ public class ActivityMonitor extends BroadcastReceiver {
 //		}
 		if (intent.getAction().indexOf("TEST_RULE") >= 0) {
 			Log.d(TAG, "test writing rules");
-			String config = getConfig(200);
+			String config = getConfig(1);
 			firewallManager.setFirewallConfig(config);
 			//readConfig(config);
 			configBuilder = FirewallConfig.newBuilder();
