@@ -25,23 +25,9 @@ public class MainActivity extends Activity {
 	};
 	
 	public void onBtnClicked(View v){
-//        if(v.getId() == R.id.button1){
-//        	Log.i(TAG, "Button clicked");
-//        	Intent mServiceIntent = new Intent(this, MainService.class);
-//        	mServiceIntent.putExtra("type", "start");
-//        	startService(mServiceIntent);
-///*            if (mBound) {
-//            	Log.i(TAG, "Service bound");
-//            	Toast.makeText(getBaseContext(), "Service bound", Toast.LENGTH_LONG).show();
-//            	mService.startReceiver();
-//            }
-//            else {
-//            	Log.i(TAG, "not bound");
-//            	Toast.makeText(getBaseContext(), "Service not bound", Toast.LENGTH_LONG).show();
-//            }*/
-//            
-//            
-//        }
+        if(v.getId() == R.id.button1){
+
+        }
     }
 	
 	

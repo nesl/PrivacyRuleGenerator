@@ -18,6 +18,8 @@
         		<action android:name="ACTIVITY"></action>  
         		<action android:name="android.intent.action.TEST_RULE"></action>  
         		<action android:name="TEST_RULE"></action>  
+        		<action android:name="android.intent.action.EMPTY_RULE"></action> 
+        		<action android:name="EMPTY_RULE"></action>  
         	</intent-filter>
         
         </receiver>
