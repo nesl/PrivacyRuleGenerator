@@ -48,6 +48,11 @@ public class ActivityMonitor extends BroadcastReceiver {
 			String config = emptyConfig();
 			firewallManager.setFirewallConfig(config);
 		}
+		if (intent.getAction().indexOf("BENCHMARK") >= 0) {
+			Log.d(TAG, "add benchmark rule");
+			String config = benchmarkRules();
+			firewallManager.setFirewallConfig(config);
+		}
 	}
 
 	// read the rule back
@@ -183,6 +188,29 @@ public class ActivityMonitor extends BroadcastReceiver {
     public String emptyConfig() {
     	configBuilder = FirewallConfig.newBuilder();
     	testPassThrough("a.b.c.d", 10022, 1, "EmptyRule");
+    	byte[] bs = configBuilder.build().toByteArray();
+    	String str = Base64.encodeToString(bs, Base64.DEFAULT);
+		return str;
+    }
+    
+    public String benchmarkRules() {
+    	configBuilder = FirewallConfig.newBuilder();
+    	ApplicationInfo app  = null;
+    	PackageManager pm = ctx.getPackageManager();
+    	try {
+			app = pm.getApplicationInfo("edu.ucla.ee.nesl.privacyfilter.sensordump", PackageManager.GET_META_DATA);
+		} catch (NameNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	testConstant("edu.ucla.ee.nesl.privacyfilter.sensordump", app.uid, 1, "Rule" + 1, -1);
+    	testConstant("edu.ucla.ee.nesl.privacyfilter.sensordump", app.uid, 2, "Rule" + 2, -2);
+    	testConstant("edu.ucla.ee.nesl.privacyfilter.sensordump", app.uid, 3, "Rule" + 3, -3);
+    	testConstant("edu.ucla.ee.nesl.privacyfilter.sensordump", app.uid, 4, "Rule" + 4, -4);
+    	testConstant("edu.ucla.ee.nesl.privacyfilter.sensordump", app.uid, 6, "Rule" + 6, -6);
+    	testConstant("edu.ucla.ee.nesl.privacyfilter.sensordump", app.uid, 9, "Rule" + 9, -9);
+    	testConstant("edu.ucla.ee.nesl.privacyfilter.sensordump", app.uid, 10, "Rule" + 10, -10);
+    	testConstant("edu.ucla.ee.nesl.privacyfilter.sensordump", app.uid, 11, "Rule" + 11, -11);
     	byte[] bs = configBuilder.build().toByteArray();
     	String str = Base64.encodeToString(bs, Base64.DEFAULT);
 		return str;

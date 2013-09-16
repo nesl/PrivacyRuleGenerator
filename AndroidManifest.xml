@@ -20,6 +20,8 @@
         		<action android:name="TEST_RULE"></action>  
         		<action android:name="android.intent.action.EMPTY_RULE"></action> 
         		<action android:name="EMPTY_RULE"></action>  
+        		<action android:name="android.intent.action.BENCHMARK"></action> 
+        		<action android:name="BENCHMARK"></action> 
         	</intent-filter>
         
         </receiver>
