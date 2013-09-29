@@ -22,6 +22,10 @@
         		<action android:name="EMPTY_RULE"></action>  
         		<action android:name="android.intent.action.BENCHMARK"></action> 
         		<action android:name="BENCHMARK"></action> 
+				<action android:name="android.intent.action.PASSTHRU"></action> 
+        		<action android:name="android.intent.action.SUPRESS"></action> 
+        		<action android:name="android.intent.action.CONSTANT"></action> 
+        		<action android:name="android.intent.action.PERTURB"></action> 
         	</intent-filter>
         
         </receiver>
